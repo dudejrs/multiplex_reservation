@@ -1,25 +1,25 @@
 // Data
-// const movie =[ 
-// 	["Jocker", "Parasite", "Shrek", "HarryPotter", "Walkingdead"],
-// 	["Parisite","HarryPotter","Jocker","Walkingdead","Shrek"]
-// ];
+const movie =[ 
+	["Jocker", "Parasite", "Shrek", "HarryPotter", "Walkingdead"],
+	["Parisite","HarryPotter","Jocker","Walkingdead","Shrek"]
+];
 
-// let movie_selected = {
-// 	genre : "Horror/ Comedy",
-// 	ratio : 4,
-// 	releaseDate : "2019.99.99",
-// 	country :  "Korea",
-// 	running_time : 130,
-// 	movie_director : "Son HeungMin",
-// 	actors : ["Park SeongSoo", "Park JaeSeon", "Oh HyeongSeo", "Woo HyeongSeok", "Jeon JongHa","Kim DeokYoung"],
-// 	agency : "CJEnt",
-// 	translator : "",
-// 	age_limit : 15,
-// 	number_of_spectators : 123456789, 
-// 	reservation_rates : 15
-// };
+let movie_selected = {
+	genre : "Horror/ Comedy",
+	ratio : 4,
+	releaseDate : "2019.99.99",
+	country :  "Korea",
+	running_time : 130,
+	movie_director : "Son HeungMin",
+	actors : ["Park SeongSoo", "Park JaeSeon", "Oh HyeongSeo", "Woo HyeongSeok", "Jeon JongHa","Kim DeokYoung"],
+	agency : "CJEnt",
+	translator : "",
+	age_limit : 15,
+	number_of_spectators : 123456789, 
+	reservation_rates : 15
+};
 
-// console.log(movie_selected);
+console.log(movie_selected);
 
 // var req = new XMLHttpRequest();
 // req.onreadystatechange = function(e){

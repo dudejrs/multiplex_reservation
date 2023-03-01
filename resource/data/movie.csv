@@ -1,0 +1,11 @@
+movie_id,movie_name,movie_image,release_date,running_time,genre,age_restriction,ratio,reservation_rates
+1,아임 히어로 더 파이널,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86829/86829_1000.jpg,2023-03-01,102,Documentary,,100,29.1
+2,"귀멸의 칼날-상현집결, 그리고 도공 마을로",https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86826/86826_1000.jpg,2023-03-02,110,Animation,15,99,21.4
+3,대외비,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86814/86814_1000.jpg,2023-03-01,116,"Crime,Drama",15,89,13.5
+4,스즈메의 문단속,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86815/86815_1000.jpg,2023-03-08,122,Animation,12,99,8.8
+5,더 퍼스트 슬램덩크,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86720/86720_1000.jpg,2023-01-04,124,Animation,12,97,4.6
+6,멍뭉이,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86797/86797_320.jpg,2023-03-01,113,Drama,,92,4.2
+7,앤트맨과 와스프-퀀텀매니아,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86796/86796_320.jpg,2023-02-15,124,Fantasy,12,80,3.2
+8,더 웨일,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86827/86827_320.jpg,2023-03-01,117,Drama,15,96,2
+9,카운트,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86798/86798_320.jpg,2023-02-22,109,Drama,12,96,2
+10,서치 2,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86770/86770_320.jpg,2023-02-22,111,"Mystery, Thriller",12,96,2
