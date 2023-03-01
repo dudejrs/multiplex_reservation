@@ -2,18 +2,29 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var session = require('express-session');
-var AWS = require('aws-sdk');
-AWS.config.region = 'ap-northeast-2';
-var ec2 = new AWS.EC2();
+// var AWS = require('aws-sdk');
+// AWS.config.region = 'ap-northeast-2';
+// var ec2 = new AWS.EC2();
 var dateFormat = require('dateformat');
 
+// var connection = mysql.createConnection({
+//   post: 3306,
+//   host: "cenema.cpnxmgyidpor.ap-northeast-2.rds.amazonaws.com",
+//   user: "admin",
+//   password: "11111111",
+//   database: 'cenema',
+//   multipleStatements: true
+// });
+
+
 var connection = mysql.createConnection({
-  post: 3306,
-  host: "cenema.cpnxmgyidpor.ap-northeast-2.rds.amazonaws.com",
-  user: "admin",
-  password: "11111111",
-  database: 'cenema',
-  multipleStatements: true
+    multipleStatements: true,
+    host: '127.0.0.1',
+    user: 'userA',
+    post: 3306,
+    password: 'secret',
+    database: 'multiplex_reservation',
+    multipleStatements: true
 });
 
 router.use(session({

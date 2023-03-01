@@ -2,18 +2,18 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var session = require('express-session');
-var AWS = require('aws-sdk');
-AWS.config.region= 'ap-northeast-2';
-var ec2 = new AWS.EC2()
+// var AWS = require('aws-sdk');
+// AWS.config.region= 'ap-northeast-2';
+// var ec2 = new AWS.EC2()
 
-var connection = mysql.createConnection({
-    post:3306,
-    host:"cenema.cpnxmgyidpor.ap-northeast-2.rds.amazonaws.com",
-    user : "admin",
-    password:"11111111",
-    database: 'cenema',
-    multipleStatements: true
-});
+// var connection = mysql.createConnection({
+//     post:3306,
+//     host:"cenema.cpnxmgyidpor.ap-northeast-2.rds.amazonaws.com",
+//     user : "admin",
+//     password:"11111111",
+//     database: 'cenema',
+//     multipleStatements: true
+// });
 
 var login = {
     logined : false,
@@ -22,15 +22,15 @@ var login = {
 }
 
 
-// var connection = mysql.createConnection({
-//     multipleStatements: true,
-//     host: 'localhost',
-//     user: 'root',
-//     post: 3000,
-//     password: '',
-//     database: 'cenema',
-//     multipleStatements: true
-// });
+var connection = mysql.createConnection({
+    multipleStatements: true,
+    host: '127.0.0.1',
+    user: 'userA',
+    post: 3306,
+    password: 'secret',
+    database: 'multiplex_reservation',
+    multipleStatements: true
+});
 
 connection.connect(function (err) {
     if (err) {
@@ -66,38 +66,51 @@ router.get('/', function (req, res, next) {
         const sql1 = "SELECT distinct movie_id, movie_name, movie_img FROM movie natural join box_office WHERE release_date <= current_timestamp() ORDER BY ratio limit 5;";
         const sql2 = "SELECT movie_id, movie_name, movie_img FROM movie WHERE release_date > current_timestamp() ORDER BY ratio limit 5;";
 
-        const sql3 = "SELECT distinct * FROM movie natural join box_office natural join actor WHERE release_date <= current_timestamp() ORDER BY ratio limit 1;"
+        const sql3 = "SELECT distinct * FROM movie natural join box_office  WHERE release_date <= current_timestamp() ORDER BY ratio limit 1;"
 
 
-        connection.query(sql1+sql2+sql3, function(error,results,fields){
+    //     connection.query(sql1+sql2+sql3, function(error,results,fields){
 
-            let screening = [];
-            let pre_release = [];
-            let movie_selected = results[2][0];
+    //         let screening = [];
+    //         let pre_release = [];
+    //         let movie_selected = results[2][0];
 
-            results[0].forEach((element)=>{
-                screening.push(element);
-            });
-            results[1].forEach((element)=>{
-                pre_release.push(element);
-            })
+    //         results[0].forEach((element)=>{
+    //             screening.push(element);
+    //         });
+    //         results[1].forEach((element)=>{
+    //             pre_release.push(element);
+    //         })
 
-        res.render('index.ejs', {
-            logined: login.logined,
-            username: login.username,
-            movie : [ 
-                screening,pre_release
-            ],
-            movie_selected : movie_selected
-        });
+    //     res.render('index.ejs', {
+    //         logined: login.logined,
+    //         username: login.username,
+    //         movie : [ 
+    //             screening,pre_release
+    //         ],
+    //         movie_selected : movie_selected
+    //     });
+    // });
+
+    const screening = [];
+    const pre_release = [];
+    const movie_selected = [];
+
+    res.render('index.ejs', {
+        logined: login.logined,
+        username: login.username,
+        movie : [ 
+            screening, pre_release
+        ],
+        movie_selected : movie_selected
     });
 });
 
-router.get('/ec2',function(rq,res){
-    ec2.describeInstances({},function(err,data){
-        res.json(data);
-    })
-});
+// router.get('/ec2',function(rq,res){
+//     ec2.describeInstances({},function(err,data){
+//         res.json(data);
+//     })
+// });
 
 router.get('/api/movie',function(req,res){
     const movie_id = req.query.movie_id;

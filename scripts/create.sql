@@ -8,10 +8,10 @@ create table movie (
 	movie_image varchar(255),
 	release_date DATE,
 	running_time int,
-	genre varchar(10),
+	genre varchar(255),
 	age_restriction int,
 	ratio double,
-	reservation_rates int
+	reservation_rates double
 ) ENGINE=INNODB;
 
 
@@ -75,3 +75,6 @@ create table coupon(
 	coupon_discounts int,
 	coupon_expireDate DATETIME
 ) ENGINE=INNODB;
+
+load data local infile 'resource/data/movie.csv' into table movie fields terminated by ',';
+load data local infile 'resource/data/cinema.csv' into table cinema fields terminated by ',';
