@@ -5,7 +5,7 @@ use multiplex_reservation;
 create table movie (
 	movie_id int primary key,
 	movie_name varchar(32),
-	movie_image varchar(255),
+	movie_img varchar(255),
 	release_date DATE,
 	running_time int,
 	genre varchar(255),

@@ -8,18 +8,6 @@ var ReserveRouter= require("./reserve");
 var ApiRouter = require("./api");
 var UserRouter = require("./users");
 
-// var AWS = require('aws-sdk');
-// AWS.config.region= 'ap-northeast-2';
-// var ec2 = new AWS.EC2()
-
-// var connection = mysql.createConnection({
-//     post:3306,
-//     host:"cenema.cpnxmgyidpor.ap-northeast-2.rds.amazonaws.com",
-//     user : "admin",
-//     password:"11111111",
-//     database: 'cenema',
-//     multipleStatements: true
-// });
 
 var login = {
     logined : false,
@@ -75,54 +63,49 @@ router.use("/register", UserRouter);
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-        const sql1 = "SELECT distinct movie_id, movie_name, movie_img FROM movie natural join box_office WHERE release_date <= current_timestamp() ORDER BY ratio limit 5;";
-        const sql2 = "SELECT movie_id, movie_name, movie_img FROM movie WHERE release_date > current_timestamp() ORDER BY ratio limit 5;";
+        const sql1 = "SELECT distinct movie_id, movie_name, movie_img, ratio FROM movie WHERE release_date <= current_timestamp() ORDER BY ratio DESC limit 5;";
+        const sql2 = "SELECT movie_id, movie_name, movie_img, ratio FROM movie WHERE release_date > current_timestamp() ORDER BY ratio limit 5;";
 
-        const sql3 = "SELECT distinct * FROM movie natural join box_office  WHERE release_date <= current_timestamp() ORDER BY ratio limit 1;"
+        const sql3 = "SELECT distinct * FROM movie  WHERE release_date <= current_timestamp() ORDER BY ratio limit 1;"
 
 
-    //     connection.query(sql1+sql2+sql3, function(error,results,fields){
+        connection.query(sql1+sql2+sql3, function(error,results,fields){
+            console.log(error);
+            console.log(results);
+            let screening = [];
+            let pre_release = [];
+            let movie_selected = results[2][0];
 
-    //         let screening = [];
-    //         let pre_release = [];
-    //         let movie_selected = results[2][0];
+            results[0].forEach((element)=>{
+                screening.push(element);
+            });
+            results[1].forEach((element)=>{
+                pre_release.push(element);
+            })
 
-    //         results[0].forEach((element)=>{
-    //             screening.push(element);
-    //         });
-    //         results[1].forEach((element)=>{
-    //             pre_release.push(element);
-    //         })
-
-    //     res.render('index.ejs', {
-    //         logined: login.logined,
-    //         username: login.username,
-    //         movie : [ 
-    //             screening,pre_release
-    //         ],
-    //         movie_selected : movie_selected
-    //     });
-    // });
-
-    const screening = [];
-    const pre_release = [];
-    const movie_selected = [];
-
-    res.render('index.ejs', {
-        logined: login.logined,
-        username: login.username,
-        movie : [ 
-            screening, pre_release
-        ],
-        movie_selected : movie_selected
+        res.render('index.ejs', {
+            logined: login.logined,
+            username: login.username,
+            movie : [ 
+                screening,pre_release
+            ],
+            movie_selected : movie_selected
+        });
     });
-});
 
-// router.get('/ec2',function(rq,res){
-//     ec2.describeInstances({},function(err,data){
-//         res.json(data);
-//     })
-// });
+    // const screening = [];
+    // const pre_release = [];
+    // const movie_selected = [];
+
+    // res.render('index.ejs', {
+    //     logined: login.logined,
+    //     username: login.username,
+    //     movie : [ 
+    //         screening, pre_release
+    //     ],
+    //     movie_selected : movie_selected
+    // });
+});
 
 
 router.get('/payment',function(req,res,next){
@@ -171,8 +154,6 @@ router.post('/', function(req, res){
         })
     }
 });
-
-
 
 
 

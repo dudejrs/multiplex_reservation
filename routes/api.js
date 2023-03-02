@@ -1,4 +1,5 @@
 var express = require('express');
+var mysql = require('mysql');
 var router = express.Router();
 
 var login = {
@@ -7,12 +8,22 @@ var login = {
     member_id : -1
 }
 
+var connection = mysql.createConnection({
+    multipleStatements: true,
+    host: '127.0.0.1',
+    user: 'userA',
+    post: 3306,
+    password: 'secret',
+    database: 'multiplex_reservation',
+    multipleStatements: true
+});
 
 
 router.get('/movie',function(req,res){
     const movie_id = req.query.movie_id;
-    const sql = "SELECT * FROM movie natural join actor WHERE movie_id = ?;";
+    const sql = "SELECT * FROM movie WHERE movie_id = ?;";
     connection.query(sql,[movie_id],(error,results,fileds)=>{
+        console.log(results)
         results[0].type = "movie_selected";
         res.json(results[0]) ;
     });

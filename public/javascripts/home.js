@@ -1,25 +1,25 @@
 // Data
-const movie =[ 
-	["Jocker", "Parasite", "Shrek", "HarryPotter", "Walkingdead"],
-	["Parisite","HarryPotter","Jocker","Walkingdead","Shrek"]
-];
+// const movie =[ 
+// 	[{movie_id : 1, movie_img : "", movie_name : "Jocker"}, {movie_id : 1, movie_img : "", movie_name : "Parasite"}, {movie_id : 1, movie_img : "", movie_name : "Shrek"}, {movie_id : 1, movie_img : "", movie_name : "HarryPotter"}, {movie_id : 1, movie_img : "", movie_name : "Walkingdead"}],
+// 	[{movie_id : 1, movie_img : "", movie_name : "Parisite"},{movie_id : 1, movie_img : "", movie_name : "HarryPotter"},{movie_id : 1, movie_img : "", movie_name : "Jocker"},{movie_id : 1, movie_img : "", movie_name : "Walkingdead"},{movie_id : 1, movie_img : "", movie_name : "Shrek"}]
+// ];
 
-let movie_selected = {
-	genre : "Horror/ Comedy",
-	ratio : 4,
-	releaseDate : "2019.99.99",
-	country :  "Korea",
-	running_time : 130,
-	movie_director : "Son HeungMin",
-	actors : ["Park SeongSoo", "Park JaeSeon", "Oh HyeongSeo", "Woo HyeongSeok", "Jeon JongHa","Kim DeokYoung"],
-	agency : "CJEnt",
-	translator : "",
-	age_limit : 15,
-	number_of_spectators : 123456789, 
-	reservation_rates : 15
-};
 
-console.log(movie_selected);
+// let movie_selected = {
+// 	genre : "Horror/ Comedy",
+// 	ratio : 4,
+// 	releaseDate : "2019.99.99",
+// 	country :  "Korea",
+// 	running_time : 130,
+// 	movie_director : "Son HeungMin",
+// 	actors : ["Park SeongSoo", "Park JaeSeon", "Oh HyeongSeo", "Woo HyeongSeok", "Jeon JongHa","Kim DeokYoung"],
+// 	agency : "CJEnt",
+// 	translator : "",
+// 	age_limit : 15,
+// 	number_of_spectators : 123456789, 
+// 	reservation_rates : 15
+// };
+
 
 // var req = new XMLHttpRequest();
 // req.onreadystatechange = function(e){
@@ -220,18 +220,18 @@ const make_detailedInfo = function(event){
 	reservation_rates.appendChild(reservation_ratesText);
 
 
-	const actors_string = movie_selected.main_actor;
+	// const actors_string = movie_selected.main_actor;
 
-	const  actor_list = actors_string.split(",")
+	// const  actor_list = actors_string.split(",")
 
 
-	for(let i =0 ; i<actor_list.length;i++){
-		const actor = document.createElement("li");
-		const actorText = document.createTextNode("Actor : " + actor_list[i]);
+	// for(let i =0 ; i<actor_list.length;i++){
+	// 	const actor = document.createElement("li");
+	// 	const actorText = document.createTextNode("Actor : " + actor_list[i]);
 
-		actor.appendChild(actorText);
-		actors.appendChild(actor);
-	}
+	// 	actor.appendChild(actorText);
+	// 	actors.appendChild(actor);
+	// }
 	
 	
 	Info.appendChild(genre);

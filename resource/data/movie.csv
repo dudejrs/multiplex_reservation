@@ -1,4 +1,4 @@
-movie_id,movie_name,movie_image,release_date,running_time,genre,age_restriction,ratio,reservation_rates
+movie_id,movie_name,movie_img,release_date,running_time,genre,age_restriction,ratio,reservation_rates
 1,아임 히어로 더 파이널,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86829/86829_1000.jpg,2023-03-01,102,Documentary,,100,29.1
 2,"귀멸의 칼날-상현집결, 그리고 도공 마을로",https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86826/86826_1000.jpg,2023-03-02,110,Animation,15,99,21.4
 3,대외비,https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86814/86814_1000.jpg,2023-03-01,116,"Crime,Drama",15,89,13.5
