@@ -9,10 +9,35 @@ var login = {
 
 
 
+router.get("/", function(req,res,next){
+    var state = req.url;
+    var statesplit = state.split('_');
+    var results_region ;
+    var results_cinema;
+    var results_movie;
+    var results_date;
+    var results_screen;
+    var region = "서울";
+    var cinema_name;
+    var movie_name;
+    
+     res.render('reservation', {
+        logined: login.logined,
+        username: login.username,
+        reservation_information: [region, "", "", "", "", "", ""],
+        results_region,
+        results_cinema,
+        results_movie,
+        results_date,
+        results_screen: null,
+        state
+    });
+})
+
 router.get('/:state', function (req, res, next) {
     var state = req.url;
     var statesplit = state.split('_');
-    var results_region;
+    var results_region ;
     var results_cinema;
     var results_movie;
     var results_date;
@@ -33,6 +58,8 @@ router.get('/:state', function (req, res, next) {
         state
     });
 });
+
+
 // router.get('/reserv/:state', function (req, res, next) {
 //     var state = req.url;
 //     var statesplit = state.split('_');

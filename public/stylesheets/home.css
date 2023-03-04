@@ -23,7 +23,7 @@
 	overflow : hidden;
 	/*Animation*/
 	transition-property: width;
-	transition-duration: 0.5s;
+	transition-duration: 0.1s;
 	transition-timing-function: ease-in;
 }
 
@@ -66,7 +66,7 @@
 
 #movie-filter > li {
 	transition-property: color;
-	transition-duration : 0.3s;
+	transition-duration : 0.1s;
 	transition-timing-function: ease-in;
 	cursor :pointer;
 	color : rgba(255,255,255,0.8);
@@ -149,7 +149,7 @@
 	min-width: 15vw;
 	/*Animation*/
 	transition-property: min-width;
-	transition-duration: 0.3s;
+	transition-duration: 0.1s;
 	transition-timing-function: ease-in;
 	order : 1;
 }

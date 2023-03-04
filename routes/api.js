@@ -39,6 +39,75 @@ router.get('/reserv',function(req,res,next){
     });
 })
 
+router.get('/cinema/:cinema_id', function(req,res){
+
+    if(req.query.movielist != undefined ) {
+        const sql = "SELECT distinct movie.movie_name, movie.movie_id, movie.movie_img FROM box_office join screen join movie  WHERE box_office.screen_id = screen.screen_id and box_office.movie_id = movie.movie_id and cinema_id = ? ;"
+        connection.query(sql,[req.params.cinema_id], function(err, results, fields){
+            
+            res.json({
+                type: "movie_id",
+                results
+            });
+        });
+    }
+
+    if(req.query.movieid && (req.query.datelist != undefined)){
+        const sql = "SELECT distinct box_office.date FROM box_office join screen join movie WHERE box_office.movie_id = movie.movie_id and box_office.screen_id = screen.screen_id and screen.cinema_id = ? and movie.movie_id = ?";
+        
+        connection.query(sql, [req.params.cinema_id, req.query.movieid], function(err,results, fields){
+            res.json({
+                type : "date_list",
+                results
+            });
+        });
+    }
+
+    if(req.query.movieid && (req.query.screenlist != undefined)){
+        const sql = "SELECT box_office.box_office_id, box_office.screen_id, screen.screen_no, box_office.start_time FROM box_office join screen join movie WHERE box_office.movie_id = movie.movie_id and box_office.screen_id = screen.screen_id and screen.cinema_id = ? and movie.movie_id = ? and date = ?;"
+        connection.query(sql, [req.params.cinema_id, req.query.movieid, req.query.date], function(err,results,fields){
+            console.log(err);
+            res.json({
+                type : "screen_list",
+                results
+            })
+        });
+    } 
+
+});
+
+router.get('/cinema', function(req,res){
+    if(req.query.list != undefined){
+        const sql = "SELECT distinct region FROM cinema";
+        connection.query(sql,[], function(err, results, fields){
+            results = results.map(r=>r['region'].trim())
+            res.json({
+                type : "cinema_region_list",
+                results
+            });
+        });
+        return;
+    }
+
+    if(req.query.region){
+        const sql = `SELECT distinct cinema_name, cinema_id FROM cinema WHERE region like ?`;
+        const param = "%" + req.query.region.trim() + "%"
+        connection.query(sql,[param], function(err,results,fields){
+            // results = results.map(r => r["cinema_name"]);
+
+            res.json({
+                type : "cinema_list",
+                results
+            });
+        });
+        return;
+    }
+
+    res.end();
+});
+
+
+
 router.delete('/reserv', function(req,res,next){
     const reservation_id = req.body.reservation_id;
     if(reservation_id){  

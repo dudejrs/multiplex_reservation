@@ -308,7 +308,6 @@ const handle_more = function(){
 	setTimeout(()=>{
 		Content_background.style.height =  Content.getBoundingClientRect().height+'px';
 		Content_backgroundImg.style.height =  Content.getBoundingClientRect().height+'px';
-		console.log( Content.getBoundingClientRect().height);
 	},100);
 
 }
@@ -323,7 +322,7 @@ moreInfo_btn.addEventListener('click', handle_more);
 
 
 goReservation_btn.addEventListener('click', ()=>{
-	window.location.href="/reserv/0_0_0";
+	window.location.href="/reserv/";
 });
 
 

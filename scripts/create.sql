@@ -9,6 +9,9 @@ create table movie (
 	release_date DATE,
 	running_time int,
 	genre varchar(255),
+	country varchar(10),
+	director varchar(32),
+	number_of_spectators int,
 	age_restriction int,
 	ratio double,
 	reservation_rates double
@@ -25,6 +28,7 @@ create table screen (
 	screen_id int primary key,
 	cinema_id int not null,
 	screen_no int not null,
+	type varchar(16),
 	foreign key(cinema_id) references cinema(cinema_id)
 ) ENGINE=INNODB;
 
@@ -39,16 +43,13 @@ create table member (
 	email_address varchar(64)
 ) ENGINE=INNODB;
 
-create table box_offie (
+create table box_office (
 	box_office_id int primary key,
-	cinema_id int not null,
 	movie_id int not null,
 	screen_id int not null,
 	date DATE not null,
-	type varchar(16),
-	start_time DATETIME,
+	start_time TIME,
 	seat_state varchar(255),
-	foreign key(cinema_id) references cinema(cinema_id),
 	foreign key(movie_id) references movie(movie_id),
 	foreign key(screen_id) references screen(screen_id)
 ) ENGINE=INNODB;
@@ -78,3 +79,5 @@ create table coupon(
 
 load data local infile 'resource/data/movie.csv' into table movie fields terminated by ',';
 load data local infile 'resource/data/cinema.csv' into table cinema fields terminated by ',';
+load data local infile 'resource/data/screen.csv' into table screen fields terminated by ',';
+load data local infile 'resource/data/box_office.csv' into table box_office fields terminated by ',';

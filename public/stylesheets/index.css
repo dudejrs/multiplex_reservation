@@ -39,7 +39,7 @@ a {
 
 	/*Animation*/
 	transition-property: width;
-	transition-duration: 0.5s;
+	transition-duration: 0.1s;
 	transition-timing-function: ease-in;
 }
 
@@ -126,7 +126,7 @@ img {
 
 	/*Animation*/
 	transition-property: width, opacity;
-	transition-duration: 0.5s;
+	transition-duration: 0.1s;
 	transition-timing-function: ease-in;
 }
 
@@ -146,7 +146,7 @@ padding : 0 10vw;
 margin : 0 0 10vh;
 /*Animation*/
 transition-property: width;
-transition-duration: 0.5s;
+transition-duration: 0.1s;
 transition-timing-function: ease-in;
 }
 

@@ -10,12 +10,12 @@
 <body>
 	<script type="text/javascript" src="/javascripts/ajax.js"></script>
 	<script type="text/javascript">
-		const reservation_info = <%- JSON.stringify(reservation_information) %>; //region,cinema,movie_name,date,screen_no,show_start_time,box_office_id
-		const region_list = <%- JSON.stringify(results_region) %>;
-		const cinema_list = <%- JSON.stringify(results_cinema) %>;
-		const movie_list = <%- JSON.stringify(results_movie) %>;//	[0] = movie_name ;	[1] = age_restriction ;	[2] = genre ;	[3] = movie_img ;
-		const date_list = <%- JSON.stringify(results_date) %>;
-		const screen_list =<%- JSON.stringify(results_screen) %>;
+		const reservation_info = <%- JSON.stringify(reservation_information) %> //region,cinema,movie_name,date,screen_no,show_start_time,box_office_id
+		const region_list = <%- JSON.stringify(results_region) %>
+		const cinema_list = <%- JSON.stringify(results_cinema) %>
+		const movie_list = <%- JSON.stringify(results_movie) %>//	[0] = movie_name ;	[1] = age_restriction ;	[2] = genre ;	[3] = movie_img ;
+		const date_list = <%- JSON.stringify(results_date) %>
+		const screen_list =<%- JSON.stringify(results_screen) %>
 	</script>
 
 
@@ -86,7 +86,7 @@
 	</div>
 
 	<% include menu %>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"/>
 	<script type="text/javascript" src="/javascripts/index.js"></script>
 	<script type="text/javascript" src="/javascripts/reservation.js"></script>
 </body>

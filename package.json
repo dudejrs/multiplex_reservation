@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev" : "./scripts/initialize.sh",
+    "prepare" : "./scripts/initialize.sh",
     "clean" : "./scripts/finalize.sh"
   },
   "dependencies": {

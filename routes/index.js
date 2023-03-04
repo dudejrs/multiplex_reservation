@@ -64,7 +64,7 @@ router.use("/register", UserRouter);
 /* GET home page. */
 router.get('/', function (req, res, next) {
         const sql1 = "SELECT distinct movie_id, movie_name, movie_img, ratio FROM movie WHERE release_date <= current_timestamp() ORDER BY ratio DESC limit 5;";
-        const sql2 = "SELECT movie_id, movie_name, movie_img, ratio FROM movie WHERE release_date > current_timestamp() ORDER BY ratio limit 5;";
+        const sql2 = "SELECT movie_id, movie_name, movie_img, ratio FROM movie WHERE release_date > current_timestamp() ORDER BY ratio DESC limit 5;";
 
         const sql3 = "SELECT distinct * FROM movie  WHERE release_date <= current_timestamp() ORDER BY ratio limit 1;"
 
