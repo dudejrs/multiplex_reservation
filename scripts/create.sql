@@ -33,7 +33,7 @@ create table screen (
 ) ENGINE=INNODB;
 
 create table member (
-	member_id int primary key,
+	member_id int primary key AUTO_INCREMENT,
 	password varchar(32),
 	username varchar(32),
 	birth DATE,

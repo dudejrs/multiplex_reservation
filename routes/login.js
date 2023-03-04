@@ -1,30 +1,25 @@
 var express = require('express');
 var router = express.Router();
 
-var login = {
-    logined : false,
-    username : "",
-    member_id : -1
-}
 
 
 router.get('/',function(req,res,next){
-    if(login.logined){
+    if(req.session.login.logined){
         res.redirect('/');
     }
 	res.render('login',{
-		logined : login.logined,
-		username : login.username
+		logined : req.session.login.logined,
+		username : req.session.login.username
 	});
 });
 
 router.get('/register',function(req,res,next){
-    if(login.logined){
+    if(req.session.login.logined){
         res.redirect('/');
     }
 	res.render('register',{
-		logined : login.logined,
-		username : login.username
+		logined : req.session.login.logined,
+		username : req.session.login.username
 	});
 });
 

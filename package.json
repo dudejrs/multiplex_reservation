@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "prepare" : "./scripts/initialize.sh",
-    "clean" : "./scripts/finalize.sh"
+    "prepare": "./scripts/initialize.sh",
+    "dev": "nodemon --watch routes/ ./bin/www ",
+    "clean": "./scripts/finalize.sh"
   },
   "dependencies": {
     "aws-sdk": "^2.580.0",
@@ -18,8 +19,12 @@
     "express-session": "^1.17.0",
     "http": "0.0.0",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "~1.9.1",
     "mysql": "^2.17.1",
     "sync-mysql": "^3.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }

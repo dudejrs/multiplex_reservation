@@ -3,11 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var dotenv = require('dotenv');
+var session = require('express-session');
+var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
+var LoginRotuer= require("./routes/login");
+var ReserveRouter= require("./routes/reserve");
+var ApiRouter = require("./routes/api");
+var UserRouter = require("./routes/users");
+var PaymentRouter = require("./routes/payment");
+var AuthRouter = require("./routes/auth");
+var {getConnection} = require("./routes/dbcon");
 
+dotenv.config();
 var app = express();
 
 // view engine setup
@@ -20,8 +31,46 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+//session
+app.use(session({
+    secret: 'sid',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60
+    },
+}));
+
+app.use(function(req,res,next){
+    if(!req.session.login){
+      req.session.login = {
+        logined : false,
+        username : "",
+        member_id : -1
+      }
+    }
+
+    req.db = {
+      getConnection
+    }
+
+  next(); 
+});
+
+
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
+app.use("/login", LoginRotuer);
+app.use("/reserv", ReserveRouter);
+app.use("/api", ApiRouter);
+app.use("/auth", AuthRouter);
+app.use("/register", UserRouter);
+app.use("/paymenet", PaymentRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
