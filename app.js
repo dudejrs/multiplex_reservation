@@ -17,6 +17,7 @@ var UserRouter = require("./routes/users");
 var PaymentRouter = require("./routes/payment");
 var AuthRouter = require("./routes/auth");
 var {getConnection} = require("./routes/dbcon");
+var {verifyToken} = require("./routes/middlewares");
 
 dotenv.config();
 var app = express();
@@ -28,7 +29,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser("secret"));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -39,9 +40,13 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 1000 * 60 * 60
+        maxAge: 1000 * 60 * 60,
+        sameSite: "none",
+        secure: true
     },
 }));
+
+app.use(verifyToken);
 
 app.use(function(req,res,next){
     if(!req.session.login){

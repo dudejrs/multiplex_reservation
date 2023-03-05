@@ -10,7 +10,7 @@ router.get('/movie',function(req,res){
 
     req.db.getConnection((connection)=>{
         connection.query(sql,[movie_id],(error,results,fileds)=>{
-            console.log(results)
+
             results[0].type = "movie_selected";
             res.json(results[0]) ;
         });

@@ -22,8 +22,8 @@ router.get("/", function(req,res,next){
     var movie_name;
     
      res.render('reservation', {
-        logined: login.logined,
-        username: login.username,
+        logined: req.session.login.logined,
+        username: req.session.login.username,
         reservation_information: [region, "", "", "", "", "", ""],
         results_region,
         results_cinema,
@@ -47,8 +47,8 @@ router.get('/:state', function (req, res, next) {
     var movie_name;
     
      res.render('reservation', {
-        logined: login.logined,
-        username: login.username,
+        logined: req.session.login.logined,
+        username: req.session.login.username,
         reservation_information: [region, "", "", "", "", "", ""],
         results_region,
         results_cinema,
@@ -615,8 +615,8 @@ router.get('/reserv_seat/:box_office_id', function (req, res) {
     var box_office_id = req.url.split("/")[2];
     var seats;
      res.render('reservation_seat', {
-            logined: login.logined,
-            username: login.username,
+            logined: req.session.login.logined,
+            username: req.session.login.username,
             reservation_information: ["", "CGV용산", "samsung", "2019.01.01", String(3).concat("","관"), "09:30", 2],
             seats,
             box_office_id
@@ -690,8 +690,8 @@ router.post('/reserv_seat/:box_office_id', function (req, res) {
     var info_b = req.body.info_b;
     console.log(info_m,info_s,info_b);
     res.render('payment', {
-        logined: login.logined,
-        username: login.username,
+        logined: req.session.login.logined,
+        username: req.session.login.username,
         info_m
     });
    

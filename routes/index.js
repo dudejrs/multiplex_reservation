@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var axios = require('axios');
 
 
 /* GET home page. */
@@ -9,7 +10,8 @@ router.get('/', function (req, res, next) {
         const sql2 = "SELECT movie_id, movie_name, movie_img, ratio FROM movie WHERE release_date > current_timestamp() ORDER BY ratio DESC limit 5;";
 
         const sql3 = "SELECT distinct * FROM movie  WHERE release_date <= current_timestamp() ORDER BY ratio limit 1;"
-
+        console.log(req.cookies)
+        console.log(req.signedCookies)
         req.db.getConnection( (connection)=>{
             connection.query(sql1+sql2+sql3, function(error,results,fields){
                 
@@ -23,7 +25,6 @@ router.get('/', function (req, res, next) {
                 results[1].forEach((element)=>{
                     pre_release.push(element);
                 })
-                console.log(req.session)
 
                 res.render('index.ejs', {
                     logined: req.session.login.logined,
@@ -54,8 +55,8 @@ router.get('/', function (req, res, next) {
 
 
 
-router.post('/', function(req, res){
-    console.log(login.logined);  
+router.post('/',  (req,res) => {
+
     if(req.session.login.logined== false){
         var username = req.body.username;
         var password = req.body.password;
@@ -63,27 +64,40 @@ router.post('/', function(req, res){
         var sql = 'SELECT * FROM member WHERE username = ?';
 
         req.db.getConnection((connection)=>{
-            connection.query(sql, [username], function (error, results, fields) {
+            connection.query(sql, [username], async (error, results, fields) => {
                 if (results.length == 0) {
                     res.render('login', { alert: true });
                 } else {
                     var db_pwd = results[0].password;
 
                     if (password == db_pwd) {
-                        //session
-                        req.session.user = {
-                            logined: true,
-                            username: results[0].username,
-                            member_id:results[0].member_id
-                        }
+                        
+                        // //session
+                        // req.session.login = {
+                        //     logined: true,
+                        //     username: results[0].username,
+                        //     member_id:results[0].member_id
+                        // }
+                        const token =  await axios.post('http://'+req.headers.host+'/auth/token', {
+                            username : username,
+                            password :  password
+                        });
+
+                        res.cookie('authorization', token.data.token, {
+                            expires: new Date(Date.now() + 900000),
+                            httpOnly : true,
+                            secure : true,
+                            sameSite: false, 
+                            signed : true
+                        })
+
                     }
-                        res.redirect('/');
+                    res.redirect('/');
                 }
             });
         })
 
     }else {
-
         req.session.login.logined= {
             logined : false,
             username : "",

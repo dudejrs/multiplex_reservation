@@ -1,19 +1,35 @@
 const jwt = require('jsonwebtoken');
 
-export.verifyToken = (req, res, token) =>{
+exports.publishTokenIFNotExist = (req, res, next) =>{
+	if(!req.cookies.authorization){
+		res.redirect("/login")
+	}
+}
+
+
+exports.verifyToken = (req, res, next) =>{
 	try{
-		req.decoded = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
+		const decoded = jwt.verify(req.signedCookies.authorization, process.env.JWT_SECRET);
+		
+		req.session.login = {
+			logined : true,
+			username : decoded.username,
+			member_id : decoded.member_id
+		}
+
+		console.log(req.session);
+
 		return next();
 	}catch(error){
 		if(error.name === "TokenExpiredErro"){
-			return res.status(419).json({
-				code: 419,
-				message: '토큰이 만료되었음'
+			res.clearCookie('authorization', req.cookies.authorization, {
+				expires: new Date(Date.now() + 900000),
+				httpOnly : true,
+				secure : true,
+				signed : true
 			});
+			// client error처리
 		}
-		return res.status(401).json({
-			code: 401,
-			message : '유효하지 않은 토큰'
-		});
+		return next();
 	}
 };
