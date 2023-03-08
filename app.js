@@ -72,7 +72,7 @@ app.use("/reserv", ReserveRouter);
 app.use("/api", ApiRouter);
 app.use("/auth", AuthRouter);
 app.use("/register", UserRouter);
-app.use("/paymenet", PaymentRouter);
+app.use("/payment", PaymentRouter);
 
 
 

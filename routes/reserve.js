@@ -697,5 +697,19 @@ router.post('/reserv_seat/:box_office_id', function (req, res) {
    
 })
 
+router.post('/', function (req, res) {
+    var info_m = req.body.info_m;
+    var info_s = req.body.info_s;
+    var info_b = req.body.info_b;
+    console.log(info_m,info_s,info_b);
+    res.render('payment', {
+        logined: req.session.login.logined,
+        username: req.session.login.username,
+        info_m
+    });
+   
+})
+
+
 
 module.exports = router;

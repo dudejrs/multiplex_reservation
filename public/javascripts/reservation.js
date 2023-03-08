@@ -170,7 +170,6 @@ const make_reservation_info = function (i, textContent, info) {
 }
 
 const make_regionList = function () {
-	document.getElementById("info").value = reservation_info;
 	const RegionList = document.querySelector("#region-list");
 	for (i = 0; i < region_list.length; i++) {
 		let newItem = document.createElement('li');
@@ -209,7 +208,7 @@ const make_cinemaList = function (cinema_list) {
 			}
 			newItem.className = "selected";
 			reservation_info["cinema_id"] = this.cinema_id;
-			make_reservation_info(1, "cinema", newItem.textContent);
+
 			get_movie_list(this.cinema_id);
 		});
 		CinemaList.appendChild(newItem);
@@ -242,7 +241,6 @@ const make_movieList = function () {
 			newItem.className = "selected";
 			reservation_info["movie_id"] = this.movie_id;
 
-			make_reservation_info(2, "movie_name", this.movie_name);
 			get_date_list(reservation_info["cinema_id"], this.movie_id);
 		});
 		MovieList.appendChild(newItem);
@@ -274,7 +272,6 @@ const make_dateList = function () {
 			
 			reservation_info["date"] = this.date;
 			document.getElementsByClassName("date").value = reservation_info["date"];
-			make_reservation_info(3, "date", reservation_info["date"]);
 
 			get_screen_list(reservation_info["cinema_id"], reservation_info["movie_id"], this.date);
 
@@ -351,8 +348,6 @@ const make_screenList = function (screen_time_list) {
 				reservation_info["box_office_id"] = this.box_office_id;
 				document.getElementsByClassName("screen_no").value = reservation_info["screen_no"];
 				document.getElementsByClassName("show_start_time").value = reservation_info["start_time"];
-				make_reservation_info(4, "screen_no", reservation_info["screen_no"]+"관");
-				make_reservation_info(5, "show_start_time", reservation_info["start_time"]);
 			});
 		}
 	}
@@ -374,5 +369,12 @@ var movie_list;
 var date_list;
 var screen_list;
 var reservation_info = {}
+var reserv_seats = [[1,1,1,0,1,1,1,1,1,0,1,1,1],[1,1,1,0,1,1,1,1,1,0,1,1,1],[1,1,1,0,1,1,1,1,1,0,1,1,1],[1,1,1,0,1,1,1,1,1,0,1,1,1]];
+
+var seat_list = new Array();
+var mem_ayp = [0, 0, 0];
+make_seatChart(reserv_seats);
+make_memset();
+
 
 get_region_list();

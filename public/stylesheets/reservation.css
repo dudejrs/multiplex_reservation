@@ -9,17 +9,24 @@ body {
   align-items: flex-start;
   flex-wrap: wrap;
   width:80vw;
-  padding: 0 10vw 15vh;
+  padding: 10vh 10vw 15vh;
   background-color: black;
   color: white;
+}
+
+#Content > * {
+  flex-gorw : 1; 
+  width: 45%;   
 }
 
 #movie-container{
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between;*/
-  width: 45vw;
-  margin : 5vh 0;
+/*  justify-content: space-between;*/
+  align-content: center;
+/*  width: 50%;*/
+  min-width: 500px;
+/*  margin : 5vh 0;*/
 }
 
 #movie-container  ul {
@@ -32,9 +39,6 @@ body {
   overflow-x: scroll;
   padding-bottom: 2vh;
   /*flex-grow: 1;*/
-}
-#movie-cotainer > h4{
-  /*flex-grow : 0;*/
 }
 
 #movie-container > ul::-webkit-scrollbar{
@@ -72,7 +76,19 @@ body {
   background-color : red;
 }
 
-  
+ 
+#region-list, 
+#cinema-list,
+#date-list,
+#screen-list{
+  min-height: 10vh;
+}
+
+#movie-list{
+  min-height: 14vw;
+}
+
+
 #region-list > li,
 #cinema-list > li,
 #date-list > li,
@@ -139,6 +155,10 @@ body {
 
 }
 
+#movie-list > li.selected {
+  border : solid 3px #bfff00;
+}
+
 #RE > input[type=submit]{
   border: 1px solid white;
   background-color: rgba(163, 128, 128, 0.158);
@@ -169,19 +189,18 @@ body {
 
 
 #Seats-container {
-    align-self: center;
+    margin-left : 2.5vw;
+    min-width: 500px;
+/*    align-self: center;*/
     display: flex;
     flex-direction: column;
-    justify-content: center;
+/*    justify-content: center;*/
     align-items: center;
     overflow-x:visible;
     overflow-y: visible;
     color:white;
 }
 
-#Seats-container > #reservation_info{
-  border-radius: 10px;
-}
 #Seats-container > * {
   margin-top: 5vh;
   
@@ -195,7 +214,7 @@ body {
 
 #seat_before {
   /* overflow : scroll; */
-  width: 30vw;
+  min-width: 100%;
   background-color: rgba(240,240,240,0.2);
   padding: 2vh 5vw;
   box-sizing: border-box;
@@ -216,19 +235,26 @@ body {
   margin: 1vh 0;
 }
 #reservation_info {
-  margin-left : 30px;
-  width: 30vw;
-  background-color: rgba(240,240,240,0.2);
-  padding: 2vh 5vw;
+/*  margin-left : 30px;*/
+  min-width: 100%;
+  height: 30vh;
+  padding: 2rem 2rem;
   box-sizing: border-box;
   border: 1px solid white;
-
+  border-radius: 10px;
+  background-color: rgba(240,240,240,0.2);
+  
+  display : flex;
+  flex-direction: column;
+  flex-wrap : wrap;
 }
 #reservation_info > div {
   display: flex;
   flex-direction: row;
+  width : 50%;
 }
 #reservation_info > div > *{
+  max-width: 80%;
   margin: 1vh 0;
 }
 .reservation_result > #reservation_info{
@@ -239,8 +265,8 @@ body {
 }
 
 #Seats{
-  width: 50vw;
-  min-width: 500px;
+/*  width: 50%;*/
+  min-width: 20vw;
   overflow-x: visible;
   position: relative;  
   margin-top: 10%;
@@ -250,25 +276,25 @@ body {
   border-radius: 10px;
 }
 #Seats-container > #Seats_screen{
-  position: absolute;
-  margin-top: -420px;
+/*  position: absolute;*/
+/*  margin-top: -420px;*/
 }
 
 #screen{
-  position: absolute;
+/*  position: absolute;*/
   top:0;
-  width: 50vw;
-  min-width: 500px;
- min-height: calc(50vw/ 16*9);
-  /*height: calc(70vw/3*2);*/
+  min-width: 50vw;
+/*  min-height: calc(50vw/ 16*9);*/
+/*  height: calc(70vw/3*2);*/
   background-image: url("/images/screen.png");
   background-size : cover;
   background-repeat:no-repeat;
   background-overflow:visible;
+  background-position: top;
 }
 
 #SeatChart{
-  margin-top: calc(50vw/16*9*1/3);
+  padding-top: calc(50vw/16*9*1/3);
 }
 .memset > p{
   width : 3vw;
@@ -319,7 +345,7 @@ body {
 }
 
 #goPayment {
-  position: absolute;
+/*  position: absolute;*/
   bottom: 25%;
   right: 15%;
   width: 15vw;

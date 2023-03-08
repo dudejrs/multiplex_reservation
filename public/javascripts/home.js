@@ -89,6 +89,8 @@ const make_movieChart = function(){
 			element.addEventListener('click',change_select.bind(element));
 		});
 
+		console.log(Movie);
+
 		Movie_filter.forEach((element,index)=>{
 			element.addEventListener('click',()=>{
 				const Movie = document.querySelectorAll('.movie');
@@ -114,14 +116,17 @@ const make_movieChart = function(){
 						}
 						change_selected_movie_Info(movie[index][0].movie_id);
 					})
-					})},500);
+					},100);
 		
 				remove_simpleInfo();
 				document.querySelector('.movie.selected').classList.remove('selected');
+				console.log(document.querySelector('.movie.selected'));
+				console.log(Movie[0]);
 				Movie[0].classList.add('selected');
 				make_simpleInfo();
 				Movie_chart.scrollLeft= 0;
 			});
+		});
 };
 
 const make_simpleInfo = function(event){
@@ -267,6 +272,7 @@ const change_select = function(event){
 	const Movie = document.querySelectorAll('.movie');
 	const more = document.querySelector("#more");
 	remove_simpleInfo();
+	console.log(document.querySelector('.movie.selected'));
 	document.querySelector('.movie.selected').classList.remove('selected');
 	change_selected_movie_Info(this.value);	
 	more.classList.add('changing');

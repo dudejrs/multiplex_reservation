@@ -3,17 +3,17 @@ var mysql = require('mysql');
 var router = express.Router();
 
 
-var login = {
-    logined : false,
-    username : "",
-    member_id : -1
-}
-
-
 router.get('/',function(req,res,next){
     res.render('payment',{
-        logined : login.logined,
-        username : login.username
+        logined : req.session.login.logined,
+        username : req.session.login.username
+    });
+});
+
+router.post('/',function(req,res,next){
+    res.render('payment',{
+        logined : req.session.login.logined,
+        username : req.session.login.username
     });
 });
 

@@ -23,64 +23,90 @@
 
 	<div id="Content">
 		<div id="movie-container">
-			<h4>Region</h4>
+			<h2>Region</h2>
 			<ul id="region-list">
 			</ul>
-			<h4>Cinema</h4>
+			<h2>Cinema</h2>
 
 			<ul id="cinema-list">
 			</ul>
-			<h4>Movie</h4>
+			<h2>Movie</h2>
 
 			<ul id="movie-list">
 			</ul>
 
-			<h4>Date</h4>
+			<h2>Date</h2>
 			<div id="month-list"></div>
 			<ul id="date-list">
 			</ul>
-			<h4>Screen</h4>
+			<h2>Screen</h2>
 			<div id="screen-list">
 			</div>
 		</div>
 		<div id="Seats-container">
+				<!-- <h2>예매내역</h2>
+				<div id="reservation_info">
+					<div>
+						<p>cinema: <%= reservation_information[1] %> </p>
+					</div>
+					<div>
+						<p>movie_name: <%= reservation_information[2] %></p>
+					</div>
+					<div>
+						<p>date: <%= reservation_information[3] %></p>
+					</div>
+					<div>
+						<p>screen_no: <%= reservation_information[4] %></p>
+					</div>
+					<div>
+						<p>show_start_time: <%= reservation_information[5] %></p>
+					</div>
+					<div>
+						<p>seats:</p>
+					</div>
+					<div>
+						<p>cost:</p>
+					</div>
+					<div>
+					<form id="RE" action=<%= `/reserv/${state}` %> method="post">
+						<input type="hidden" name="info" value="다시하기" />
+						<input type="submit" value="다시하기">
+					</form>
 
-			<div id="reservation_info">
-				<h4>예매내역</h4>
-				<div>
-					<p>cinema: <%= reservation_information[1] %> </p>
-				</div>
-				<div>
-					<p>movie_name: <%= reservation_information[2] %></p>
-				</div>
-				<div>
-					<p>date: <%= reservation_information[3] %></p>
-				</div>
-				<div>
-					<p>screen_no: <%= reservation_information[4] %></p>
-				</div>
-				<div>
-					<p>show_start_time: <%= reservation_information[5] %></p>
-				</div>
-				<div>
-					<p>seats:</p>
-				</div>
-				<div>
-					<p>cost:</p>
-				</div>
-				<div>
-				<form id="RE" action=<%= `/reserv/${state}` %> method="post">
-					<input type="hidden" name="info" value="다시하기" />
-					<input type="submit" value="다시하기">
-				</form>
+					<form id="select_form" action=<%= `/reserv/${state}` %> method="post">
+						<input type="hidden" id="info" name="info" />
+						<input type="submit" value="좌석선택">
 
-				<form id="select_form" action=<%= `/reserv/${state}` %> method="post">
-					<input type="hidden" id="info" name="info" />
-					<input type="submit" value="좌석선택">
+					</form>
+				</div>
+			</div> -->
 
-				</form>
+			<h2 id="Seats_screen">Seats</h2>
+			<div id="Seats">
+				<div id="screen">
+					<div id="SeatChart">
+					</div>
+				</div>
+
 			</div>
+			<div id="seat_before">
+				<h4>인원선택</h4>
+				<ul class="memset">
+					<p>일반</p>
+				</ul>
+				<ul class="memset">
+					<p>청소년</p>
+				</ul>
+				<ul class="memset">
+					<p>우대</p>
+				</ul>
 			</div>
+			<form name = "fr" onsubmit="return check()" action=<%= `/payment` %> method="post">
+				<input type="submit" id="goPayment" value="Payment">
+				<input type="hidden" id="info_s" name="info_s" value = ""/>
+				<input type="hidden" id="info_m" name="info_m" value = ""/>
+				<input type="hidden" id="info_b" name="info_b" value = ""/>
+			</form>
 		</div>
 		<!-- <div id="goPayment">Payment</div> -->
 	</div>
@@ -89,7 +115,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"/>
 	<script type="text/javascript" src="/javascripts/index.js"></script>
 	<script type="text/javascript" src="/javascripts/reservation.js"></script>
-	<script type="text/javascript" src="/javascripts/menu.js"></script>
 </body>
 
 </html>
