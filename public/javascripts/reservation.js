@@ -54,18 +54,18 @@ async function get_screen_list(cinema_id, movie_id, date){
 
 
 
-const goPayment = document.querySelector("#goPayment");
-function check() {
-	if(fr.info_m.value == "") {
-	  alert("인원수 선택하세요");
-	  return false;
-	}else if( seat_list.length!= mem_ayp[0]+mem_ayp[1]+mem_ayp[2]) {
-		alert("인원수만큼 좌석 선택 하세요");
-	return false;
 
-	}else {return true;}
+// function check() {
+// 	if(fr.info_m.value == "") {
+// 	  alert("인원수 선택하세요");
+// 	  return false;
+// 	}else if( seat_list.length!= mem_ayp[0]+mem_ayp[1]+mem_ayp[2]) {
+// 		alert("인원수만큼 좌석 선택 하세요");
+// 	return false;
+
+// 	}else {return true;}
   
-  }
+//   }
   
 const make_seatChart = function (seats) {
 	const SeatChart = document.querySelector('#SeatChart');
@@ -106,7 +106,7 @@ const make_seatChart = function (seats) {
 					}
 					text = document.createTextNode(seat_list);
 					seat_list.sort();
-					document.getElementById("seats_info").textContent ="seats: "+ seat_list;
+
 					document.getElementById("info_s").value = seat_list ;
 					
 
@@ -197,17 +197,19 @@ const make_cinemaList = function (cinema_list) {
 		let newItem = document.createElement('li');
 		let newItem_text = document.createTextNode(cinema_list[i].cinema_name);
 		newItem.cinema_id = cinema_list[i].cinema_id;
+		newItem.cinema_name = cinema_list[i].cinema_name;
 
 		newItem.appendChild(newItem_text);
-		if (cinema_list[i] == reservation_info[1]) {
-			newItem.className = "selected";
-		}
+		// if (cinema_list[i] == reservation_info[1]) {
+		// 	newItem.className = "selected";
+		// }
 		newItem.addEventListener('click', function (event) {
 			for (var k = 0; k < CinemaList.childElementCount; k++) {
 				CinemaList.children[k].className = "";
 			}
 			newItem.className = "selected";
 			reservation_info["cinema_id"] = this.cinema_id;
+			reservation_info["cinema_name"] = this.cinema_name;
 
 			get_movie_list(this.cinema_id);
 		});
@@ -230,9 +232,9 @@ const make_movieList = function () {
 		newItem.movie_id = movie_list[i].movie_id;
 		newItem.movie_name = movie_list[i].movie_name;
 
-		if (movie_list[i] == reservation_info[2]) {
-			newItem.className = "selected";
-		}
+		// if (movie_list[i] == reservation_info[2]) {
+		// 	newItem.className = "selected";
+		// }
 
 		newItem.addEventListener('click', function (event) {
 			for (var k = 0; k < MovieList.childElementCount; k++) {
@@ -240,6 +242,7 @@ const make_movieList = function () {
 			}
 			newItem.className = "selected";
 			reservation_info["movie_id"] = this.movie_id;
+			reservation_info["movie_name"] = this.movie_name;
 
 			get_date_list(reservation_info["cinema_id"], this.movie_id);
 		});
@@ -362,6 +365,30 @@ const remove_screenList = function(){
 
 }
 
+
+const postReservationInfoToPayment = function(){
+	
+	fr.action=`${location.protocol}//${location.host}/payment`;
+
+	fr.method="POST";
+
+	for(const key in reservation_info){
+		var elem = document.createElement("input");
+		elem.setAttribute("type","hidden");
+		elem.setAttribute("name",key);
+		elem.setAttribute("value",reservation_info[key]);
+		fr.appendChild(elem);
+	}
+
+
+	fr.submit();
+};
+
+
+
+const goPayment = document.querySelector("#goPayment");
+
+goPayment.addEventListener('click', postReservationInfoToPayment)
 
 var region_list;
 var cinema_list;

@@ -89,7 +89,6 @@ const make_movieChart = function(){
 			element.addEventListener('click',change_select.bind(element));
 		});
 
-		console.log(Movie);
 
 		Movie_filter.forEach((element,index)=>{
 			element.addEventListener('click',()=>{
@@ -120,8 +119,6 @@ const make_movieChart = function(){
 		
 				remove_simpleInfo();
 				document.querySelector('.movie.selected').classList.remove('selected');
-				console.log(document.querySelector('.movie.selected'));
-				console.log(Movie[0]);
 				Movie[0].classList.add('selected');
 				make_simpleInfo();
 				Movie_chart.scrollLeft= 0;

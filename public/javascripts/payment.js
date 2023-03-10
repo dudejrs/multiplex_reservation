@@ -96,12 +96,23 @@ const change_PaymentStatus = function(){
 	if(this.checked == true){	
 		Payment_status.discounts  += parseInt(this.value);
 		Payment_status.payment_amount = tickets_price - Payment_status.discounts;
+		this.parentNode.classList.toggle('active');
 	} else {
 		Payment_status.discounts -= parseInt(this.value);
 		Payment_status.payment_amount = tickets_price - Payment_status.discounts;
+		this.parentNode.classList.toggle('active');
 	}
 	change_Payment();
 };
+const checkOut = function(){
+	const reservation_form = document.querySelector("#reservation_form");
+	reservation_form.action=`${location.protocol}//${location.host}/payment/checkout`;
+	reservation_form.method= 'POST';
+	reservation_form.submit();
+
+
+}
+
 
 make_CupponList();
 change_Payment();
@@ -112,3 +123,5 @@ CupponList.forEach((element)=>{
 	element.addEventListener('click',change_PaymentStatus.bind(element));
 })
 
+const checkoutBtn = document.querySelector('#checkOutBtn');
+checkoutBtn.addEventListener('click',checkOut);

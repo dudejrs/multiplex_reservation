@@ -39,7 +39,7 @@ create table member (
 	birth DATE,
 	sex varchar(2),
 	address varchar(255),
-	phone_number varchar(10),
+	phone_number varchar(30),
 	email_address varchar(64)
 ) ENGINE=INNODB;
 
@@ -55,14 +55,18 @@ create table box_office (
 ) ENGINE=INNODB;
 
 create table reservation(
-	reservation_id int primary key,
+	reservation_id int primary key AUTO_INCREMENT,
+	box_office_id int not null,
+	member_id int not null,
 	reservation_status varchar(10),
-	persone_type varchar(10),
-	seat_type varchar(10)
+	person_type varchar(10),
+	seat_type varchar(255),
+	foreign key(box_office_id) references box_office(box_office_id),
+	foreign key(member_id) references member(member_id)
 ) ENGINE=INNODB;
 
 create table payment(
-	payment_id int primary key,
+	payment_id int primary key AUTO_INCREMENT,
 	reservation_id int,
 	payment_status varchar(255),
 	payment_method varchar(255),

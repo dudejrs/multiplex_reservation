@@ -168,7 +168,7 @@ const toggle_reservationList = function(){
 		reservation_list_load = true;
 	}
 	this.classList.toggle('hidden');
-	Menu.style.height= body.scrollHeight+"px";
+	Menu.style.height= body.scrollHeight+"px"; 
 	if(this.classList.contains('hidden')){
 		window.scrollTo(0,0);
 	}

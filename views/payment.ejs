@@ -7,18 +7,21 @@
 </head>
 <body>
     <script type="text/javascript" src="/javascripts/ajax.js"></script>
+    <script type="text/javascript">
+    	var cost = <%- JSON.stringify(cost) %>
+    </script>
 	<% include nav %>
 	<div id="Content">
 
-		<form action="#" method="Post">
+		<form id="reservation_form" action="/payment/checkout" method="Post">
 			<div id="Reservation-Info">
 				<h3>Reservation</h3>
-				<div><p>movie_name:</p></div>
-					<div><p>cinema"</p></div>
-					<div><p>date:</p></div>
-					<div><p>screen:</p></div>
-					<div><p>seats:</p></div>
-					<div><p>cost:</p></div>
+				<div class= "Reservation-Info-Item"><span>movie_name</span><span><%- movie_name %></span></div>
+				<div class= "Reservation-Info-Item"><span>cinema</span><span><%- cinema_name %></span></div>
+				<div class= "Reservation-Info-Item"><span>date</span><span><%- date %></span></div>
+				<div class= "Reservation-Info-Item"><span>screen</span><span><%- screen %></span></div>
+				<div class= "Reservation-Info-Item"><span>seats</span><span><%- info_s %></span></div>
+				<div class= "Reservation-Info-Item"><span>cost</span><span><%- cost %></span></div>
 			</div>
 			
 			<ul id="Cuppon-list">
@@ -48,12 +51,13 @@
 				<li><label><input type="radio" name="pay_method" value="계좌이체"/><h5>계좌이체</h5></label></li>
 				<li><label><input type="radio" name="pay_method" value="간편결제" /><h5>간편결제</h5></label></li>
 			</ul>
+
 			<div id="Payment">
 				<h3>Pay</h3>
-				<p>Tickets Price: <span id="price">8000</span>원</p>
-				<p>Discounts : <span id="discounts">3000</span>원</p>
-				<p>Total : <span id="total_price">3000</span>원</p>
-			<input type="submit" value="Check out!"/>
+				<div><span>Tickets Price</span> <span><span id="price">8000</span>원</span></div>
+				<div><span>Discounts</span> <span><span id="discounts">3000</span>원</span></div>
+				<div><span>Total </span> <span><span id="total_price">3000</span>원</span></div>
+			<input id="checkOutBtn" value="Check out!"/>
 			</div>
 		</form>
 	</div>

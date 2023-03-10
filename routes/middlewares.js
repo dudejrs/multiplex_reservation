@@ -17,7 +17,8 @@ exports.verifyToken = (req, res, next) =>{
 			member_id : decoded.member_id
 		}
 
-		console.log(req.session);
+
+
 
 		return next();
 	}catch(error){

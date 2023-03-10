@@ -44,42 +44,6 @@
 			</div>
 		</div>
 		<div id="Seats-container">
-				<!-- <h2>예매내역</h2>
-				<div id="reservation_info">
-					<div>
-						<p>cinema: <%= reservation_information[1] %> </p>
-					</div>
-					<div>
-						<p>movie_name: <%= reservation_information[2] %></p>
-					</div>
-					<div>
-						<p>date: <%= reservation_information[3] %></p>
-					</div>
-					<div>
-						<p>screen_no: <%= reservation_information[4] %></p>
-					</div>
-					<div>
-						<p>show_start_time: <%= reservation_information[5] %></p>
-					</div>
-					<div>
-						<p>seats:</p>
-					</div>
-					<div>
-						<p>cost:</p>
-					</div>
-					<div>
-					<form id="RE" action=<%= `/reserv/${state}` %> method="post">
-						<input type="hidden" name="info" value="다시하기" />
-						<input type="submit" value="다시하기">
-					</form>
-
-					<form id="select_form" action=<%= `/reserv/${state}` %> method="post">
-						<input type="hidden" id="info" name="info" />
-						<input type="submit" value="좌석선택">
-
-					</form>
-				</div>
-			</div> -->
 
 			<h2 id="Seats_screen">Seats</h2>
 			<div id="Seats">
@@ -101,11 +65,12 @@
 					<p>우대</p>
 				</ul>
 			</div>
-			<form name = "fr" onsubmit="return check()" action=<%= `/payment` %> method="post">
-				<input type="submit" id="goPayment" value="Payment">
+			<form name = "fr" method="post">
+				<input id="goPayment" value="Payment">
 				<input type="hidden" id="info_s" name="info_s" value = ""/>
 				<input type="hidden" id="info_m" name="info_m" value = ""/>
 				<input type="hidden" id="info_b" name="info_b" value = ""/>
+				<input type="hidden" id="reservation_info" name="reservation_info" value="" />
 			</form>
 		</div>
 		<!-- <div id="goPayment">Payment</div> -->

@@ -11,15 +11,14 @@ router.get('/', function (req, res, next) {
         const sql2 = "SELECT movie_id, movie_name, movie_img, ratio FROM movie WHERE release_date > current_timestamp() ORDER BY ratio DESC limit 5;";
 
         const sql3 = "SELECT distinct * FROM movie  WHERE release_date <= current_timestamp() ORDER BY ratio DESC limit 1;"
-        console.log(req.cookies)
-        console.log(req.signedCookies)
+        
         req.db.getConnection( (connection)=>{
             connection.query(sql1+sql2+sql3, function(error,results,fields){
                 
                 let screening = [];
                 let pre_release = [];
                 let movie_selected = results[2][0];
-                console.log(movie_selected);
+
 
                 results[0].forEach((element)=>{
                     screening.push(element);
